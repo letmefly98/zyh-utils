@@ -1,25 +1,26 @@
 {
   "name": "zyh-utils",
+  "type": "module",
   "version": "1.0.0",
   "description": "用来存放一些经过单测的工具函数",
-  "main": "index.js",
-  "scripts": {
-    "test:dev": "vitest",
-    "test": "vitest run --coverage",
-    "lint": "eslint --ext js,mjs ./",
-    "lint:fix": "eslint --ext js,mjs --fix ./"
-  },
+  "author": "forever-z-133",
+  "license": "ISC",
+  "homepage": "https://github.com/forever-z-133/zyh-utils#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/forever-z-133/zyh-utils.git"
   },
-  "keywords": [],
-  "author": "forever-z-133",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/forever-z-133/zyh-utils/issues"
   },
-  "homepage": "https://github.com/forever-z-133/zyh-utils#readme",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "test:dev": "vitest",
+    "test": "vitest run --coverage",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.3",
     "@vitest/coverage-v8": "^1.4.0",
