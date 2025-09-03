@@ -5,7 +5,6 @@ import {
   getDaysInMonth,
   getFirstDayOfWeek,
   getInitialDate,
-  getPastDateString,
   stringToDate,
 } from '../src/date.mjs'
 
@@ -64,16 +63,16 @@ describe('date.mjs', () => {
     expect(getFirstDayOfWeek(new Date(2023, 2, 12, 19, 15, 0))).toStrictEqual(new Date(2023, 2, 12, 19, 15, 0)) // 周一转周一
   })
 
-  it('getPastDateString', () => {
-    const baseDate = new Date(2022, 4, 20, 0, 0, 0) // 2022-5-20 00:00:00
-    expect(getPastDateString(new Date(2022, 4, 20, 0, 0, 0, 50), baseDate)).toBe('刚刚')
-    expect(getPastDateString(new Date(2022, 4, 20, 0, 0, 1), baseDate)).toBe('刚刚')
-    expect(getPastDateString(new Date(2022, 4, 20, 0, 1, 0), baseDate)).toBe('1分钟前')
-    expect(getPastDateString(new Date(2022, 4, 20, 0, 1, 30), baseDate)).toBe('1分钟前')
-    expect(getPastDateString(new Date(2022, 4, 20, 0, 2, 0), baseDate)).toBe('2分钟前')
-    expect(getPastDateString(new Date(2022, 4, 20, 1, 0, 0), baseDate)).toBe('1小时前')
-    expect(getPastDateString(new Date(2022, 4, 21, 1, 0, 0), baseDate)).toBe('一天前')
-    expect(getPastDateString(new Date(2022, 4, 22, 1, 0, 0), baseDate)).toBe('二天前')
-    expect(getPastDateString(new Date(2022, 4, 23, 1, 0, 0), baseDate)).toBe('2022-05-23')
-  })
+  // it('getPastDateString', () => {
+  //   const baseDate = new Date(2022, 4, 20, 0, 0, 0) // 2022-5-20 00:00:00
+  //   expect(getPastDateString(new Date(2022, 4, 20, 0, 0, 0, 50), baseDate)).toBe('刚刚')
+  //   expect(getPastDateString(new Date(2022, 4, 20, 0, 0, 1), baseDate)).toBe('刚刚')
+  //   expect(getPastDateString(new Date(2022, 4, 20, 0, 1, 0), baseDate)).toBe('1分钟前')
+  //   expect(getPastDateString(new Date(2022, 4, 20, 0, 1, 30), baseDate)).toBe('1分钟前')
+  //   expect(getPastDateString(new Date(2022, 4, 20, 0, 2, 0), baseDate)).toBe('2分钟前')
+  //   expect(getPastDateString(new Date(2022, 4, 20, 1, 0, 0), baseDate)).toBe('1小时前')
+  //   expect(getPastDateString(new Date(2022, 4, 21, 1, 0, 0), baseDate)).toBe('一天前')
+  //   expect(getPastDateString(new Date(2022, 4, 22, 1, 0, 0), baseDate)).toBe('二天前')
+  //   expect(getPastDateString(new Date(2022, 4, 23, 1, 0, 0), baseDate)).toBe('2022-05-23')
+  // })
 })

@@ -9,7 +9,7 @@ export const typeOf = obj => Object.prototype.toString.call(obj).slice(8, -1).to
  * 补零
  * @param {number} num 数字
  * @param {number} len 长度
- * @returns number
+ * @returns {string} 补零后的数字字符串
  */
 export function addZero(num, len = 2) {
   if (Number.isNaN(num) || num === undefined) return ''
@@ -21,9 +21,9 @@ export function addZero(num, len = 2) {
 
 /**
  * 驼峰转连字符
- * 比如 fontSize 返回 font-size
- * @param {string} str 驼峰字符串
- * @returns string
+ * @example hyphenate('fontSize') // font-size
+ * @param {string} str 字符串
+ * @returns {string} 连字符字符串
  */
 export function hyphenate(str) {
   if (!str || typeof str !== 'string') return ''

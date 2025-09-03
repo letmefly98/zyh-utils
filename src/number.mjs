@@ -58,12 +58,12 @@ export function createNumberObject(num) {
  *   0.8 - 0.7 // 0.10000000000000009
  *   1.1 * 100 // 110.00000000000001
  *   6.1 / 0.1 // 60.99999999999999
- * @param {string} type 运算规则 加减乘除
- * @param {number} num1 数字1
- * @param {number} num2 数字2
+ * @param {string} _type 运算规则 加减乘除
+ * @param {number} _num1 数字1
+ * @param {number} _num2 数字2
  * @returns number
  */
-export function calculate(type, num1, num2) {
+export function calculate(_type, _num1, _num2) {
   return Number.NaN
 }
 

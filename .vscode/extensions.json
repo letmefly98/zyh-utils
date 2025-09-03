@@ -1,9 +1,6 @@
 {
   "recommendations": [
     "streetsidesoftware.code-spell-checker",
-    "dbaeumer.vscode-eslint",
-    "eamodio.gitlens",
-    "ionutvmi.path-autocomplete",
-    "Gruntfuggly.todo-tree"
+    "dbaeumer.vscode-eslint"
   ]
 }
