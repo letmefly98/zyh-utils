@@ -15,6 +15,7 @@ export default antfu(
       'no-console': 0, // 允许 console
       '@typescript-eslint/explicit-function-return-type': 0, // 允许 ts 不写函数返回类型
       'vue/html-self-closing': [1, { html: { void: 'always' } }],
+      'jsdoc/no-defaults': 0, // 允许 jsdoc 写 defaultValue
     },
   },
 )

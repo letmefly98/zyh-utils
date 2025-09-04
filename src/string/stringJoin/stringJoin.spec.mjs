@@ -24,6 +24,8 @@ describe('stringJoin', () => {
   })
 
   it('complex case', () => {
+    expect(stringJoin('&', 'a=1', 'b=2&c=3')).toBe('a=1&b=2&c=3')
     expect(stringJoin('&', 'a=1', '&b=2&c=3')).toBe('a=1&b=2&c=3')
+    expect(stringJoin('&', 'a=1', 'b=2&', '&c=3&')).toBe('a=1&b=2&c=3&')
   })
 })

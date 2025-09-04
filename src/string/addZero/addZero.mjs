@@ -6,7 +6,7 @@
  * addZero(23, 4) // 0023
  *
  * @param {number|string} num 数字
- * @param {number} len 长度
+ * @param {number} [len=2] 长度
  * @returns {string} 补零后的字符串
  */
 export function addZero(num, len = 2) {

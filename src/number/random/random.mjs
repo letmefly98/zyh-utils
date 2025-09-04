@@ -6,7 +6,7 @@
  * random(2, 10) // 2-10 之间的随机数
  *
  * @param {number} n 范围值1
- * @param {number} m 范围值2
+ * @param {number} [m=0] 范围值2
  * @returns {number} 0-n/n-m 之间的随机数
  */
 export function random(n, m = 0) {

@@ -5,8 +5,8 @@
  * stringJoin('/', 'a', 'b', 'c') // 'a/b/c'
  * stringJoin('&', 'a=1', '&b=2&c=3') // 'a=1&b=2&c=3'
  *
- * @param {string} separator
- * @param  {...string} strings
+ * @param {string} separator 连接符
+ * @param  {...string} strings 待拼接的字符串
  * @returns {string} 拼接后的字符串
  */
 export function stringJoin(separator = '/', ...strings) {

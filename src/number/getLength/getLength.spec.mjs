@@ -24,4 +24,15 @@ describe('getLength', () => {
     expect(getLength({})).toBe(0)
     expect(getLength({ a: 1, b: 2 })).toBe(2)
   })
+
+  it('unexpected number case', () => {
+    expect(getLength(10)).toBe(0)
+    expect(getLength(-10)).toBe(0)
+    expect(getLength(1.2e3)).toBe(0)
+  })
+
+  it('unexpected argument', () => {
+    expect(getLength(undefined)).toBe(0)
+    expect(getLength(null)).toBe(0)
+  })
 })
