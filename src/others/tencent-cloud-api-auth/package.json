@@ -1,0 +1,8 @@
+{
+  "name": "tencent-cloud-api-auth",
+  "type": "module",
+  "version": "1.0.0",
+  "devDependencies": {
+    "crypto-js": "^4.2.0"
+  }
+}

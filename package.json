@@ -7,6 +7,9 @@
   "license": "ISC",
   "homepage": "https://github.com/letmefly98/zyh-utils#readme",
   "keywords": [],
+  "workspaces": [
+    "src/*/*"
+  ],
   "scripts": {
     "test:dev": "vitest",
     "test": "vitest run --coverage",
@@ -16,8 +19,10 @@
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
     "@vitest/coverage-v8": "^3.2.4",
+    "dayjs": "^1.11.18",
     "eslint": "^9.34.0",
     "jsdom": "^26.1.0",
+    "lodash-es": "^4.17.21",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   }

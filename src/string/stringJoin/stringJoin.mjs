@@ -1,5 +1,5 @@
 /**
- * 带分隔符的字符串拼接，类似 nodejs 的 path.join
+ * 带分隔符的字符串拼接
  *
  * @example
  * stringJoin('/', 'a', 'b', 'c') // 'a/b/c'
