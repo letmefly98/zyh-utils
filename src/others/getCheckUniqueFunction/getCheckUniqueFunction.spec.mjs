@@ -11,6 +11,11 @@ describe('getCheckUniqueFunction', () => {
 
   it('normal create case', async () => {
     const check = getCheckUniqueFunction(isProjectNameExisted)
+    const promise0 = check('')
+    await vi.advanceTimersByTimeAsync(1000)
+    const isExisted0 = await promise0
+    expect(isExisted0).toBe(false) // 没有输入，跳过
+
     const promise1 = check('old')
     await vi.advanceTimersByTimeAsync(1000)
     const isExisted1 = await promise1

@@ -3,6 +3,7 @@ import { getLength } from './getLength.mjs'
 
 describe('getLength', () => {
   it('normal string case', () => {
+    expect(getLength('')).toBe(0)
     expect(getLength('abc')).toBe(3)
     expect('𠮷'.length).toBe(2)
     expect(getLength('𠮷')).toBe(1)
@@ -29,10 +30,13 @@ describe('getLength', () => {
     expect(getLength(10)).toBe(0)
     expect(getLength(-10)).toBe(0)
     expect(getLength(1.2e3)).toBe(0)
+    expect(getLength(Number.NaN)).toBe(0)
   })
 
   it('unexpected argument', () => {
     expect(getLength(undefined)).toBe(0)
     expect(getLength(null)).toBe(0)
+    expect(getLength(true)).toBe(0)
+    expect(getLength(false)).toBe(0)
   })
 })
