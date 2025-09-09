@@ -49,7 +49,7 @@ export class ConcurrencyPool {
    * 创建并发池实例
    * @constructor
    * @param {number} [limit=3] - 最大并发数，默认为3
-   * @param {object} [options] - 配置选项
+   * @param {object} [options] - 可控制参数
    * @param {boolean} [options.processWhenError=true] - 是否在任务失败时继续执行下一个任务，默认为true
    *
    * @example

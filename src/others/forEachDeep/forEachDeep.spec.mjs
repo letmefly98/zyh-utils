@@ -20,9 +20,9 @@ describe('forEachDeep', () => {
     forEachDeep(tree, callback)
     expect(callback).toBeCalledTimes(5)
     expect(callback).toHaveBeenNthCalledWith(1, tree[0], 0, 0)
-    expect(callback).toHaveBeenNthCalledWith(2, tree[0].children[0], 1, 0)
-    expect(callback).toHaveBeenNthCalledWith(3, tree[0].children[0].children[0], 2, 0)
-    expect(callback).toHaveBeenNthCalledWith(4, tree[0].children[0].children[1], 2, 1)
+    expect(callback).toHaveBeenNthCalledWith(2, tree[0].children[0], 0, 1)
+    expect(callback).toHaveBeenNthCalledWith(3, tree[0].children[0].children[0], 0, 2)
+    expect(callback).toHaveBeenNthCalledWith(4, tree[0].children[0].children[1], 1, 2)
     expect(callback).toHaveBeenNthCalledWith(5, tree[0].children[1], 1, 1)
   })
 
@@ -32,7 +32,7 @@ describe('forEachDeep', () => {
     forEachDeep(tree, callback, { children: 'items' })
     expect(callback).toBeCalledTimes(2)
     expect(callback).toHaveBeenNthCalledWith(1, tree[0], 0, 0)
-    expect(callback).toHaveBeenNthCalledWith(2, tree[0].items[0], 1, 0)
+    expect(callback).toHaveBeenNthCalledWith(2, tree[0].items[0], 0, 1)
   })
 
   it('depth option', async () => {
@@ -45,7 +45,7 @@ describe('forEachDeep', () => {
     forEachDeep(tree, callback2, { depth: 1 })
     expect(callback2).toBeCalledTimes(3)
     expect(callback1).toHaveBeenNthCalledWith(1, tree[0], 0, 0)
-    expect(callback2).toHaveBeenNthCalledWith(2, tree[0].children[0], 1, 0)
+    expect(callback2).toHaveBeenNthCalledWith(2, tree[0].children[0], 0, 1)
     expect(callback2).toHaveBeenNthCalledWith(3, tree[0].children[1], 1, 1)
   })
 
@@ -53,9 +53,9 @@ describe('forEachDeep', () => {
     const callback = vi.fn()
     forEachDeep(tree, callback, { firstly: 'child' })
     expect(callback).toBeCalledTimes(5)
-    expect(callback).toHaveBeenNthCalledWith(1, tree[0].children[0].children[0], 2, 0)
-    expect(callback).toHaveBeenNthCalledWith(2, tree[0].children[0].children[1], 2, 1)
-    expect(callback).toHaveBeenNthCalledWith(3, tree[0].children[0], 1, 0)
+    expect(callback).toHaveBeenNthCalledWith(1, tree[0].children[0].children[0], 0, 2)
+    expect(callback).toHaveBeenNthCalledWith(2, tree[0].children[0].children[1], 1, 2)
+    expect(callback).toHaveBeenNthCalledWith(3, tree[0].children[0], 0, 1)
     expect(callback).toHaveBeenNthCalledWith(4, tree[0].children[1], 1, 1)
     expect(callback).toHaveBeenNthCalledWith(5, tree[0], 0, 0)
   })
