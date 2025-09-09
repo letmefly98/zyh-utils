@@ -74,4 +74,8 @@ describe('forEachDeep', () => {
     expect(callback3).toBeCalledTimes(1)
     expect(callback3).toHaveBeenNthCalledWith(1, { a: 1 }, 0, 0)
   })
+
+  it('unexpected callback argument', () => {
+    expect(() => forEachDeep([], undefined)).not.toThrow()
+  })
 })
