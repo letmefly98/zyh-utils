@@ -7,6 +7,6 @@ import { utcDayjs } from '../utils.mjs'
  * @param {string} [format="YYYY-MM-DD HH:mm:ss"] 日期格式
  * @returns {string} 日期字符串
  */
-export function dateFormat(date, format = 'YYYY-MM-DD HH:mm:ss') {
+export function date2string(date, format = 'YYYY-MM-DD HH:mm:ss') {
   return utcDayjs(date).format(format)
 }
