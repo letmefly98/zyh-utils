@@ -1,15 +1,4 @@
-export interface LinkInfo {
-  linkId: number
-  direction: 1 | 2 | 3 | 4 // 道路方向类型： 1顺向 2逆向 3双向
-  slinkNodeId: number // 道路几何方向前端点
-  elinkNodeId: number // 道路几何方向后端点
-}
-
-type DirectionResultForward = 1
-type DirectionResultReverse = 2
-type DirectionResultNull = 0
-export type DirectionResult = DirectionResultForward | DirectionResultReverse | DirectionResultNull
-
+import type { DirectionResult, LinkInfoItem } from './types'
 /**
  * 已知有一批道路数据，格式为 LinkInfo，他们具有几何连续性。
  * 连续是指前 link 的 nodeId 与后 link 的 nodeId 存在相等，比如前 link 的 elinkNodeId 与后 link 的 slinkNodeId/elinkNodeId 相等，则两条道路连续。
@@ -21,7 +10,7 @@ export type DirectionResult = DirectionResultForward | DirectionResultReverse | 
  */
 
 export function getLinksDirection(
-  links: LinkInfo[],
+  links: LinkInfoItem[],
   startPointIndex: number,
   endPointIndex: number,
 ): DirectionResult[] {

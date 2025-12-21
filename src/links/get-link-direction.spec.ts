@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { getLinksDirection } from './get-link-direction'
 
 describe('get-link-direction', () => {
-  it('空数组或小数组', () => {
+  it('空数组或小数组，实际场景不存在', () => {
     const result = getLinksDirection([], 1, 2)
     expect(result).toEqual([])
 

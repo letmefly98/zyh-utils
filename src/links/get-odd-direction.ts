@@ -4,10 +4,10 @@
  * 考虑起终点对应的方向为汽车行驶方向，若汽车行驶方向与道路顺序一致，则为1，否则为2
  */
 
-import type { DirectionResult, LinkInfo } from './get-link-direction'
+import type { DirectionResult, LinkInfoItem } from './types'
 
 export function getOddDirection(
-  links: LinkInfo[],
+  links: LinkInfoItem[],
   startPointIndex: number,
   endPointIndex: number,
 ): DirectionResult[] {
