@@ -14,7 +14,7 @@ export function getOddDirection(
   const result = Array.from<DirectionResult>({ length: links.length }).fill(0)
 
   if (links.length < 2) {
-    console.info('道路数组长度最小为2，请检查')
+    // console.info('道路数组长度最小为2，请检查')
     return []
   }
 

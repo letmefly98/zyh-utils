@@ -16,7 +16,7 @@
 export function getCheckUniqueFunction(method, action = 'create', originValue = '') {
   return async (value) => {
     if (!value) return false
-    const needCheck = action === 'create' || (action === 'modify' && value !== originValue)
+    const needCheck = action === 'create' || (action !== 'create' && value !== originValue)
     const isUnique = needCheck ? await method(value) : false
     return isUnique
   }

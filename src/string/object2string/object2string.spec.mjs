@@ -38,4 +38,15 @@ describe('object2string', () => {
     expect(object2string({ a: 1, b: 2 }, undefined, Number.NaN)).toBe('aNaN1&bNaN2')
     expect(object2string({ a: 1, b: 2 }, undefined, null)).toBe('anull1&bnull2')
   })
+
+  it('should ignore inherited properties from prototype chain', () => {
+    const parent = { inherited: 'should-be-ignored' }
+    const child = Object.create(parent)
+    child.own = 'included'
+    expect(object2string(child)).toBe('own=included')
+
+    // 验证原型链属性确实存在但被过滤
+    expect('inherited' in child).toBe(true)
+    expect(Object.prototype.hasOwnProperty.call(child, 'inherited')).toBe(false)
+  })
 })

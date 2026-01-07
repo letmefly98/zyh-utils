@@ -1,4 +1,4 @@
-import type { LinkInfo } from './get-link-direction'
+import type { LinkInfoItem } from './types'
 import { describe, expect, it } from 'vitest'
 import { getLinksDirection } from './get-link-direction'
 
@@ -12,7 +12,7 @@ describe('get-link-direction', () => {
   })
 
   it('简单双向路', () => {
-    const links: LinkInfo[] = [
+    const links: LinkInfoItem[] = [
       { linkId: 1, direction: 3, slinkNodeId: 1, elinkNodeId: 2 },
       { linkId: 2, direction: 3, slinkNodeId: 2, elinkNodeId: 3 },
       { linkId: 3, direction: 3, slinkNodeId: 3, elinkNodeId: 4 },
@@ -23,7 +23,7 @@ describe('get-link-direction', () => {
   })
 
   it('存在几何方向不同的双向路', () => {
-    const links: LinkInfo[] = [
+    const links: LinkInfoItem[] = [
       { linkId: 1, direction: 3, slinkNodeId: 1, elinkNodeId: 2 },
       { linkId: 2, direction: 3, slinkNodeId: 3, elinkNodeId: 2 },
       { linkId: 3, direction: 3, slinkNodeId: 3, elinkNodeId: 4 },
@@ -35,7 +35,7 @@ describe('get-link-direction', () => {
   })
 
   it('起终点不在两端', () => {
-    const links: LinkInfo[] = [
+    const links: LinkInfoItem[] = [
       { linkId: 1, direction: 3, slinkNodeId: 1, elinkNodeId: 2 },
       { linkId: 2, direction: 3, slinkNodeId: 2, elinkNodeId: 3 },
       { linkId: 3, direction: 3, slinkNodeId: 3, elinkNodeId: 4 },
@@ -47,7 +47,7 @@ describe('get-link-direction', () => {
   })
 
   it('起终点颠倒不影响道路几何方向', () => {
-    const links: LinkInfo[] = [
+    const links: LinkInfoItem[] = [
       { linkId: 1, direction: 3, slinkNodeId: 1, elinkNodeId: 2 },
       { linkId: 2, direction: 3, slinkNodeId: 3, elinkNodeId: 2 },
       { linkId: 3, direction: 3, slinkNodeId: 3, elinkNodeId: 4 },
@@ -59,7 +59,7 @@ describe('get-link-direction', () => {
   })
 
   it('单向路', () => {
-    const links: LinkInfo[] = [
+    const links: LinkInfoItem[] = [
       { linkId: 1, direction: 3, slinkNodeId: 1, elinkNodeId: 2 },
       { linkId: 2, direction: 1, slinkNodeId: 3, elinkNodeId: 2 },
       { linkId: 3, direction: 1, slinkNodeId: 4, elinkNodeId: 3 },

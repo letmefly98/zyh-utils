@@ -2,9 +2,6 @@
  * 并发池类，用于控制异步任务的并发执行数量
  * @class ConcurrencyPool
  * @description 提供并发控制功能，可以限制同时执行的异步任务数量，避免资源过度消耗
- * @author YourName
- * @version 1.0.0
- * @since 1.0.0
  *
  * @example
  * // 创建一个最大并发数为3的并发池
@@ -40,27 +37,27 @@ export class ConcurrencyPool {
   /**
    * 配置选项
    * @type {object}
-   * @property {boolean} processWhenError - 是否在任务失败时继续执行下一个任务
+   * @property {boolean} continueWhenError - 是否在任务失败时继续执行下一个任务
    * @public
    */
-  options = { processWhenError: true }
+  options = { continueWhenError: true }
 
   /**
    * 创建并发池实例
    * @constructor
    * @param {number} [limit=3] - 最大并发数，默认为3
    * @param {object} [options] - 可控制参数
-   * @param {boolean} [options.processWhenError=true] - 是否在任务失败时继续执行下一个任务，默认为true
+   * @param {boolean} [options.continueWhenError=true] - 是否在任务失败时继续执行下一个任务，默认为true
    *
    * @example
    * const pool = new ConcurrencyPool(5);
    *
    * @example
-   * const pool = new ConcurrencyPool(3, { processWhenError: false });
+   * const pool = new ConcurrencyPool(3, { continueWhenError: false });
    */
   constructor(limit = 3, options) {
     this.limit = limit
-    this.options = { processWhenError: true, ...(options || {}) }
+    this.options = { continueWhenError: true, ...(options || {}) }
   }
 
   /**
@@ -89,7 +86,7 @@ export class ConcurrencyPool {
           reject(error)
         } finally {
           this.running--
-          if (!hasError || (hasError && this.options.processWhenError)) this._processNext()
+          if (!hasError || (hasError && this.options.continueWhenError)) this._processNext()
         }
       }
       if (this.running < this.limit) {

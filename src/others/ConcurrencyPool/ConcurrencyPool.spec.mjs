@@ -11,19 +11,19 @@ describe('class ConcurrencyPool', () => {
     expect(pool.limit).toBe(3)
     expect(pool.running).toBe(0)
     expect(pool.queue).toEqual([])
-    expect(pool.options.processWhenError).toBe(true)
+    expect(pool.options.continueWhenError).toBe(true)
   })
 
   it('should create instance with custom limit', () => {
     const pool = new ConcurrencyPool(5)
     expect(pool.limit).toBe(5)
-    expect(pool.options.processWhenError).toBe(true)
+    expect(pool.options.continueWhenError).toBe(true)
   })
 
   it('should create instance with custom options', () => {
-    const pool = new ConcurrencyPool(3, { processWhenError: false })
+    const pool = new ConcurrencyPool(3, { continueWhenError: false })
     expect(pool.limit).toBe(3)
-    expect(pool.options.processWhenError).toBe(false)
+    expect(pool.options.continueWhenError).toBe(false)
   })
 
   it('should execute task immediately when under limit', async () => {
@@ -79,8 +79,8 @@ describe('class ConcurrencyPool', () => {
     expect(pool.running).toBe(0)
   })
 
-  it('should continue processing when processWhenError is true', async () => {
-    const pool = new ConcurrencyPool(1, { processWhenError: true })
+  it('should continue processing when continueWhenError is true', async () => {
+    const pool = new ConcurrencyPool(1, { continueWhenError: true })
 
     const failingTask = vi.fn().mockRejectedValue(new Error('Failed'))
     const successTask = vi.fn().mockImplementation(() => sleep(500).then(() => 'success'))
@@ -91,12 +91,24 @@ describe('class ConcurrencyPool', () => {
     await expect(failPromise).rejects.toThrow('Failed')
 
     vi.advanceTimersByTimeAsync(500)
-    const result = await successPromise
-    expect(result).toBe('success')
+    await expect(successPromise).resolves.toBe('success')
     expect(successTask).toHaveBeenCalledTimes(1)
   })
 
-  it.todo('should not continue processing when processWhenError is false', async () => {
+  it('should not continue processing when continueWhenError is false', async () => {
+    const pool = new ConcurrencyPool(1, { continueWhenError: false })
+
+    const failingTask = vi.fn().mockRejectedValue(new Error('Failed'))
+    const successTask = vi.fn().mockImplementation(() => sleep(500).then(() => 'success'))
+
+    const failPromise = pool.run(failingTask)
+    const successPromise = pool.run(successTask)
+
+    await expect(failPromise).rejects.toThrow('Failed')
+
+    const wholePromise = Promise.all([failPromise, successPromise])
+    await expect(wholePromise).rejects.toThrow('Failed')
+    expect(successTask).toHaveBeenCalledTimes(0)
   })
 
   it('should process queue in FIFO order', async () => {
