@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { sleep } from '../sleep/sleep.mjs'
-import { useCache } from './useCache.mjs'
+import { useAsyncCacheDirectly } from './useAsyncCacheDirectly.mjs'
 
-describe('useCache', () => {
+describe('useAsyncCacheDirectly', () => {
   beforeEach(() => {
     vi.useFakeTimers()
   })
@@ -13,7 +13,7 @@ describe('useCache', () => {
   it('normal case', async () => {
     let i = 1
     const _refreshList = vi.fn(async () => i++)
-    const refreshList = useCache(_refreshList)
+    const refreshList = useAsyncCacheDirectly(_refreshList)
     expect(await refreshList()).toBe(1) // 无缓存，调用后读写缓存
     expect(await refreshList()).toBe(1) // 已有缓存，立即返回缓存，并异步刷新缓存
     expect(await refreshList()).toBe(2) // 返回新缓存
@@ -22,7 +22,7 @@ describe('useCache', () => {
   it('normal async case', async () => {
     let i = 1
     const _refreshList = async () => (await sleep(1000) ?? i++)
-    const refreshList = useCache(_refreshList)
+    const refreshList = useAsyncCacheDirectly(_refreshList)
 
     const result1 = await getAsyncFunctionResult(refreshList(), 1000)
     expect(result1).toBe(1) // 无缓存，等待请求结果，返回结果，并写入缓存
@@ -38,7 +38,7 @@ describe('useCache', () => {
   it('autoRefreshCache param', async () => {
     let i = 1
     const _refreshList = async () => (await sleep(1000) ?? i++)
-    const refreshList = useCache(_refreshList, false)
+    const refreshList = useAsyncCacheDirectly(_refreshList, false)
 
     const result1 = await getAsyncFunctionResult(refreshList(), 1000)
     expect(result1).toBe(1) // 无缓存，等待请求结果，返回结果，并写入缓存

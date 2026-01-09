@@ -7,7 +7,7 @@ import { getCurrentInstance, h, ref, useAttrs } from 'vue'
 defineExpose({} as ComponentInstance<typeof ElButton>)
 const vm = getCurrentInstance()
 function changeRef(exposed: any) {
-  if (vm) vm.exposed = exposed
+  vm!.exposed = exposed
 }
 
 const loading = ref(false)

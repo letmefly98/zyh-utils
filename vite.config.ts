@@ -9,6 +9,11 @@ export default defineConfig(({ command }) => {
       environment: 'jsdom',
       coverage: {
         provider: 'v8',
+        exclude: [
+          './vite/**',
+          './vitest/**',
+          './src/map-tools/utils/libs/**',
+        ],
       },
       projects: [
         {
@@ -21,6 +26,7 @@ export default defineConfig(({ command }) => {
               provider: playwright(),
               instances: [{ browser: 'chromium' }],
               headless: true,
+              api: { host: '127.0.0.1', port: 63315 },
             },
             setupFiles: ['./vitest/setup/tmap-loader.ts'],
           },

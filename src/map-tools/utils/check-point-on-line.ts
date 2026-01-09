@@ -30,28 +30,6 @@ type CheckResult = ErrorCase | OnPrev | OnNext | OnLine
 
 /**
  * 判断点与线段的垂足是否在线段上
- *
- * @param point - 目标点坐标
- * @param line - 线段，由两个点组成的数组 [起点, 终点]
- * @returns 检查结果对象
- *
- * @example
- * ```typescript
- * const point = { lng: 116.404, lat: 39.915 }
- * const line = [
- *   { lng: 116.400, lat: 39.915 },
- *   { lng: 116.410, lat: 39.915 }
- * ]
- * const result = checkPointOnLine(point, line)
- *
- * if (result.on === 'line') {
- *   console.log(`垂足在线段上，位置比例: ${result.percent}`)
- * } else if (result.on === 'prev') {
- *   console.log('垂足在前延长线上')
- * } else if (result.on === 'next') {
- *   console.log('垂足在后延长线上')
- * }
- * ```
  */
 export function checkPointOnLine(point: Point, line: [Point, Point]): CheckResult {
   const [p1, p2] = line

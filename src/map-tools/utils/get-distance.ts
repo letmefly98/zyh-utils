@@ -2,8 +2,6 @@ import type { Point } from '../types/draw'
 import { checkPointOnLine } from './check-point-on-line'
 import { point2ll } from './format-point'
 
-const toRad = (deg: number) => (deg * Math.PI) / 180
-
 /**
  * 点与点的距离
  */
@@ -14,7 +12,7 @@ export function getDistanceDot2Dot(p1: Point, p2: Point): number {
 /**
  * 计算整条 link 中所有线段的总长度
  */
-export function getDistanceOfLink(path: Point[]) {
+export function getDistanceOfLink(path: Point[]): number {
   let totalDistance = 0
   for (let i = 0; i < path.length - 1; i++) {
     totalDistance += getDistanceDot2Dot(path[i], path[i + 1])
@@ -52,6 +50,8 @@ export function getDistanceToLinkStart(point: Point, path: Point[]): number {
 
   return accumulatedDistance
 }
+
+const toRad = (deg: number) => (deg * Math.PI) / 180
 
 /**
  * 使用 Haversine 公式计算两点间的距离（单位：米）
