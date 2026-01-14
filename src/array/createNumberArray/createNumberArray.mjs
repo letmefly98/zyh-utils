@@ -6,5 +6,5 @@
  * @returns {number[]} 递增数字的数组
  */
 export function createNumberArray(length, start = 0) {
-  return Array.from({ length }).map((_, i) => start + i)
+  return Array.from({ length }, (_, i) => start + i)
 }

@@ -1,3 +1,5 @@
+import { toFixed } from '@/number/math/math'
+
 /**
  * 通用单位值格式化工具
  * @example
@@ -15,7 +17,7 @@ export function formatUnitValue(value, units = ['B', 'KB', 'MB', 'GB', 'TB'], ba
   if (typeof value !== 'number' || Number.isNaN(value)) return ''
   if (value < 0) return ''
 
-  if (units.length === 1) return `${Number(value.toFixed(precision))}${units[0]}`
+  if (units.length === 1) return `${toFixed(value, precision)}${units[0]}`
 
   let currentValue = value
   let unitIndex = 0

@@ -4,6 +4,7 @@ import { createNumberArray } from './createNumberArray.mjs'
 describe('createNumberArray', () => {
   it('normal case', () => {
     expect(createNumberArray(3)).toEqual([0, 1, 2])
+    expect(createNumberArray(3, 10)).toEqual([10, 11, 12])
   })
 
   it('unexpected length argument', async () => {

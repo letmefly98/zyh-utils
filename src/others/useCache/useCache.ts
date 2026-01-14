@@ -21,14 +21,13 @@ export function useCache<F extends (...args: any[]) => any>(
   callback: F,
   getKey?: (...args: Parameters<F>) => string,
 ): F {
-  const getKeyFn = typeof getKey === 'function'
-    ? getKey
-    : (...args: Parameters<F>) => {
-        // 自定义序列化以正确处理 undefined
-        return JSON.stringify(args, (key, value) => {
-          return value === undefined ? '__UNDEFINED__' : value
-        })
-      }
+  function DefaultGetKey(...args: Parameters<F>) {
+    return JSON.stringify(args, (_, value) => {
+      return value === undefined ? '__UNDEFINED__' : value
+    })
+  }
+  const getKeyFn = typeof getKey === 'function' ? getKey : DefaultGetKey
+
   const cacheMap = new Map<string, ReturnType<F>>()
 
   function handler(...args: Parameters<F>): ReturnType<F> {
@@ -46,5 +45,5 @@ export function useCache<F extends (...args: any[]) => any>(
     return result
   }
 
-  return handler as unknown as F
+  return handler as F
 }
