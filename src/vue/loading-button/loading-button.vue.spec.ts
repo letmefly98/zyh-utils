@@ -200,5 +200,11 @@ describe('loading-button.vue', () => {
     expectLoading(button, false)
   })
 
-  it.todo('应该暴露ElButton的实例方法', async () => {})
+  it('应该暴露ElButton的实例方法', async () => {
+    // 比如 loading-button 的实例其实为 el-button 的实例
+    // 而 el-button 的实例上存在 ref 值为 按钮 html 元素
+    wrapper = mount(LoadingButton, { slots: { default: '测试按钮' } })
+    await nextTick()
+    expect(wrapper.vm.ref instanceof HTMLButtonElement).toBeTruthy()
+  })
 })

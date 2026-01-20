@@ -1,14 +1,11 @@
 <script setup lang="ts" name="LoadingButton" inheritAttrs="false">
 import type { ComponentInstance } from 'vue'
 import { ElButton } from 'element-plus'
-import { omit } from 'lodash-es'
 import { getCurrentInstance, h, ref, useAttrs } from 'vue'
 
 defineExpose({} as ComponentInstance<typeof ElButton>)
 const vm = getCurrentInstance()
-function changeRef(exposed: any) {
-  vm!.exposed = exposed
-}
+const changeRef = (exposed: any) => (vm!.exposed = exposed)
 
 const loading = ref(false)
 const attrs = useAttrs()
@@ -29,5 +26,5 @@ async function handleClick(ev: MouseEvent) {
 </script>
 
 <template>
-  <component :is="h(ElButton, { ...omit(attrs, 'onClick'), loading, ref: changeRef, onClick: handleClick }, $slots)" />
+  <component :is="h(ElButton, { ...attrs, loading, ref: changeRef, onClick: handleClick }, $slots)" />
 </template>
