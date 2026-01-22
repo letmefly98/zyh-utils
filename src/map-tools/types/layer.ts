@@ -5,17 +5,6 @@ interface GeometryBase<T = any> {
   rank?: number
 }
 
-export interface Point {
-  lng: number // 经度 lng较大(116.40447399831032)(x轴)
-  lat: number // 纬度 lat较小(39.93362685019524)(y轴)
-}
-export type PointArray = [number, number]
-export type PointLike = Point | PointArray | TMap.LatLng | string
-// export type Paths = Point[];
-// export type Line = [Point, Point];
-// export type Area = Point[];
-// export type Lines = Line[];
-
 export type DotDrawItem<T = any> = GeometryBase<T> & {
   position: TMap.LatLng
 }

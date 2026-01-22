@@ -1,3 +1,5 @@
+/* eslint-disable antfu/no-top-level-await */
+
 /**
  * Vitest Setup: TMap CDN 加载器
  * 在测试执行前加载腾讯地图 SDK

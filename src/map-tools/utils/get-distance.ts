@@ -1,4 +1,4 @@
-import type { Point } from '../types/draw'
+import type { Point } from '../types/base'
 import { checkPointOnLine } from './check-point-on-line'
 import { point2ll } from './format-point'
 
@@ -49,23 +49,4 @@ export function getDistanceToLinkStart(point: Point, path: Point[]): number {
   }
 
   return accumulatedDistance
-}
-
-const toRad = (deg: number) => (deg * Math.PI) / 180
-
-/**
- * 使用 Haversine 公式计算两点间的距离（单位：米）
- */
-export function haversineDistance(p1: TMap.LatLng, p2: TMap.LatLng): number {
-  const R = 6371000 // 地球半径（米）
-
-  const lat1 = toRad(p1.lat)
-  const lat2 = toRad(p2.lat)
-  const deltaLat = toRad(p2.lat - p1.lat)
-  const deltaLng = toRad(p2.lng - p1.lng)
-
-  const a = Math.sin(deltaLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLng / 2) ** 2
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-
-  return R * c
 }

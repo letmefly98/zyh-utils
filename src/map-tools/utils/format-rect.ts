@@ -1,11 +1,10 @@
-import type { Point } from '../types/draw'
-import { offsetPosition } from './common'
-import { point2ll } from './format-point'
+import type { Point, PointRect } from '../types/base'
+import { offsetPosition, point2ll } from './format-point'
 
 /**
  * 获取视窗范围的左下&右上角坐标
  */
-export function getRectByScreen(map: TMap.Map) {
+export function getRectByScreen(map: TMap.Map): PointRect {
   const bounds = map.getBounds() // 当前视窗
 
   // 视窗的左下角坐标
@@ -22,7 +21,7 @@ export function getRectByScreen(map: TMap.Map) {
 /**
  * 路线或多边形的左下&右上角坐标
  */
-export function getRectByPath(path: Point[]) {
+export function getRectByPath(path: Point[]): PointRect {
   const bounds = TMap.geometry.computeBoundingRectangle(path.map(point2ll))
   const lb = bounds.getSouthWest()
   const rt = bounds.getNorthEast()
@@ -32,7 +31,7 @@ export function getRectByPath(path: Point[]) {
 /**
  * 框选交互时，获取框的左下&右上角坐标
  */
-export function getRectByEvent(e: any) {
+export function getRectByEvent(e: any): PointRect {
   // 鼠标点位，start为拖拽起始点，end为拖拽结束点
   const end = e.position
   const start = new TMap.LatLng(2 * e.geometry.center.lat - e.position.lat, 2 * e.geometry.center.lng - e.position.lng)
@@ -53,7 +52,7 @@ export function getRectByEvent(e: any) {
 /**
  * 用左下角数据，算出其他角的数据
  */
-export function getCornerLatLng(sw: Point, dist: number, direction: 'lt' | 'lb' | 'rt' | 'rb') {
+export function getRectCorner(sw: Point, dist: number, direction: 'lt' | 'lb' | 'rt' | 'rb'): Point {
   if (direction === 'lb') return sw
   const distLat = direction === 'lt' || direction === 'rt' ? dist : 0
   const distLng = direction === 'rb' || direction === 'rt' ? dist : 0
@@ -63,7 +62,7 @@ export function getCornerLatLng(sw: Point, dist: number, direction: 'lt' | 'lb' 
 /**
  * 获取多边形中心
  */
-export function getRectCenter(path: Point[]) {
+export function getRectCenter(path: Point[]): Point {
   const bounds = TMap.geometry.computeBoundingRectangle(path.map(point2ll))
   const center = bounds.getCenter()
   return center

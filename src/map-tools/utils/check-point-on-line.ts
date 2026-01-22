@@ -1,4 +1,4 @@
-import type { Point } from '../types/draw'
+import type { Point } from '../types/base'
 
 // 异常情况
 interface ErrorCase {

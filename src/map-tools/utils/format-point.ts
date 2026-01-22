@@ -1,4 +1,4 @@
-import type { Point, PointLike } from '../types/draw'
+import type { Point, PointLike } from '../types/base'
 import { CoordinateTransform } from './libs/coordinate-transform'
 
 // lng较大(116.40447399831032)(x轴)，lat较小(39.93362685019524)(y轴)
@@ -27,7 +27,7 @@ export function point2str(p: Point | TMap.LatLng, latFirst = false): string {
 }
 
 export function str2point(str: string, latFirst = false): Point {
-  let [lng, lat] = str.split(',').map(Number)
+  let [lng, lat] = str.split(',').map(e => Number(e.trim()))
   if (latFirst) [lat, lng] = [lng, lat]
   return { lng, lat }
 }
@@ -55,12 +55,12 @@ export function ll2point(p: TMap.LatLng): Point {
   return { lng: p.lng, lat: p.lat }
 }
 
-export function xy2ll(data: { x: number, y: number }) {
+export function xy2ll(data: { x: number, y: number }): TMap.LatLng {
   return getPosition({ lat: data.y, lng: data.x }) as TMap.LatLng
 }
 
 // 兼容各种格式的坐标输入，统一输出 TMap.LatLng
-export function getPosition(p?: PointLike, latFirst = false) {
+export function getPosition(p?: PointLike, latFirst = false): TMap.LatLng | undefined {
   if (!p) return undefined
 
   try {
@@ -94,4 +94,9 @@ export function getPosition(p?: PointLike, latFirst = false) {
     console.error(err)
     return undefined
   }
+}
+
+// 计算坐标点偏移
+export function offsetPosition(point: Point, offset: Point): Point {
+  return { lat: point.lat + offset.lat, lng: point.lng + offset.lng }
 }

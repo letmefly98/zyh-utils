@@ -1,7 +1,5 @@
-import type { Point } from '../types/draw'
-
-// 求两数的中位数
-const getMid = (n1: number, n2: number) => n1 + (n2 - n1) / 2
+import type { Point } from '../types/base'
+import { average } from '@/number/math/math'
 
 // 取link串形点中间两点的中间位置
 export function getMiddlePosition(points: Point[]) {
@@ -16,7 +14,7 @@ export function getMiddlePosition(points: Point[]) {
   // 偶数点，取中间两点，再取中间位置
   const m1 = Math.round(length / 2) - 1
   const m2 = m1 + 1
-  const mLat = getMid(points[m1].lat, points[m2].lat)
-  const mLng = getMid(points[m1].lng, points[m2].lng)
+  const mLat = average(points[m1].lat, points[m2].lat)
+  const mLng = average(points[m1].lng, points[m2].lng)
   return { lat: mLat, lng: mLng }
 }

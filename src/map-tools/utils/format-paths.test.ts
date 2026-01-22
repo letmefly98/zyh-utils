@@ -1,4 +1,4 @@
-import type { Point } from '../types/draw'
+import type { Point } from '../types/base'
 
 import { describe, expect, it } from 'vitest'
 import { getMiddlePosition } from './format-paths'
