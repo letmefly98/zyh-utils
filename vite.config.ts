@@ -20,6 +20,7 @@ export default defineConfig(({ command }) => {
           './vite/**',
           './vitest/**',
           './src/map-tools/utils/libs/**',
+          './src/**/examples/**',
         ],
       },
       projects: [
