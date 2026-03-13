@@ -18,7 +18,10 @@ export function sum(...arr: number[]) {
 
 // 求差
 export function minus(...arr: number[]) {
-  return arr.reduce((acc, cur) => acc.minus(cur), new BigNumber(0)).toNumber()
+  if (arr.length === 0) return 0
+  const first = arr.shift() || 0
+  if (arr.length === 0) return first
+  return arr.reduce((acc, cur) => acc.minus(cur), new BigNumber(first)).toNumber()
 }
 
 // 求乘积

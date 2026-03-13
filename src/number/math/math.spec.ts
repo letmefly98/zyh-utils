@@ -32,8 +32,8 @@ describe('math 高精度数学运算', () => {
 
   describe('minus', () => {
     it('应该正确计算连续减法', () => {
-      expect(minus(10, 3, 2)).toBe(-15) // 0 - 10 - 3 - 2 = -15
-      expect(minus(5)).toBe(-5) // 0 - 5 = -5
+      expect(minus(10, 3, 2)).toBe(5) // 10 - 3 - 2 = 5
+      expect(minus(5)).toBe(5) // 5 = 5
     })
   })
 
