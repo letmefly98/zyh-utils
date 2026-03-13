@@ -1,21 +1,4 @@
 /**
- * 将数组拆分为多个，符合的放前面
- * @param {Array} array 源数据
- * @param {Array} filterMethods 筛选函数
- * @returns array
- */
-export function divideArray(array, filterMethods = []) {
-  const length = filterMethods.length + 1
-  const result = Array.from({ length }).fill().map(() => [])
-  Array.from(array).forEach((item, ...args) => {
-    const filterIndex = filterMethods.findIndex(method => method(item, ...args))
-    if (filterIndex > -1) result[filterIndex].push(item)
-    else result[length - 1].push(item)
-  })
-  return result
-}
-
-/**
  * 键值对字符串转为对象
  * a=1&b=2 转为 {a:'1',b:'2'}
  * @param {string} str 源字符串

@@ -1,5 +1,4 @@
 import type { Corner, Delta } from '../types/delta'
-import { minus } from '@/number/math/math'
 
 /** 以不同的角进行拖拽，计算拖拽后移动的像素距离 */
 export function computeDragDelta(corner: Corner, dx: number, dy: number): Delta {
@@ -21,9 +20,9 @@ export function getLatLngDeltaByDragDelta(map: TMap.Map, dragDelta: Delta): Delt
   const { lat: bottomDelta, lng: rightDelta } = map.unprojectFromContainer(new TMap.Point(dragDelta.right, dragDelta.bottom))
 
   return {
-    left: minus(leftDelta, baseLng),
-    top: minus(topDelta, baseLat),
-    right: minus(rightDelta, baseLng),
-    bottom: minus(bottomDelta, baseLat),
+    left: leftDelta - baseLng,
+    top: topDelta - baseLat,
+    right: rightDelta - baseLng,
+    bottom: bottomDelta - baseLat,
   }
 }

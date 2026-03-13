@@ -1,23 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import {
   addDataToUrl,
-  divideArray,
   jsonToObject,
   objectToString,
   stringToObject,
 } from '../src/data.mjs'
 
 describe('data.mjs', () => {
-  it('divideArray', () => {
-    const [small, rest] = divideArray([1, 5, 2, 4, 3], [num => num < 3])
-    expect(small).toStrictEqual([1, 2])
-    expect(rest).toStrictEqual([5, 4, 3])
-    const [a, b, c] = divideArray([1, 2, 3, 1, 1, 3], [num => num === 2, num => num === 3])
-    expect(a).toStrictEqual([2])
-    expect(b).toStrictEqual([3, 3])
-    expect(c).toStrictEqual([1, 1, 1])
-  })
-
   it('stringToObject', () => {
     expect(stringToObject('')).toStrictEqual({})
     expect(stringToObject('a=1')).toStrictEqual({ a: '1' })

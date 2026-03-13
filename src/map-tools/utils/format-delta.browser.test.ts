@@ -87,7 +87,7 @@ describe('format-delta', () => {
     })
 
     it('topLeft: 左上角拖拽，鼠标左移上移时扩展', () => {
-      const dragDelta = { left: -10, top: -50, right: 0, bottom: 0 }
+      const dragDelta = { left: -10, top: -20, right: 0, bottom: 0 }
       const result = getLatLngDeltaByDragDelta(map, dragDelta)
       expect(result.left).toBeCloseTo(baseLatLngDelta.x * -10, 6)
       expect(result.top).toBeCloseTo(baseLatLngDelta.y * -20, 6)
