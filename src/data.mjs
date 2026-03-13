@@ -1,38 +1,4 @@
 /**
- * 键值对字符串转为对象
- * a=1&b=2 转为 {a:'1',b:'2'}
- * @param {string} str 源字符串
- * @param {string} divide 键值对分割符
- * @param {string} concat 键值对赋值符
- * @returns object
- */
-export function stringToObject(str, divide = '&', concat = '=') {
-  if (!str || typeof str !== 'string') return {}
-
-  const array = str.split(divide)
-  const result = {}
-
-  array.forEach((item) => {
-    if (!item) return
-
-    const temp = item.split(concat)
-    const key = decodeURIComponent(temp.shift())
-    let value = decodeURIComponent(temp.join(concat))
-
-    if (!key) return
-
-    if (value === 'null') value = null
-    else if (value === 'undefined') value = undefined
-    else if (value === 'true') value = true
-    else if (value === 'false') value = false
-
-    result[key] = value
-  })
-
-  return result
-}
-
-/**
  * 对象转为键值对字符串
  * {a:'1',b:'2'} 转为 a=1&b=2
  * @param {object} obj 对象

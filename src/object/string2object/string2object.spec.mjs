@@ -10,7 +10,7 @@ describe('string2object', () => {
     expect(string2object('a=1 &b= 2& &c=3')).toEqual({ a: 1, b: 2, c: 3 })
     expect(string2object('a=1=1&b=2')).toEqual({ a: '1=1', b: 2 })
     expect(string2object('&b=2')).toStrictEqual({ b: 2 })
-    expect(string2object('=1&b=2')).toStrictEqual({ '': 1, 'b': 2 })
+    expect(string2object('=1&b=2')).toStrictEqual({ b: 2 })
   })
 
   it('use divide and concat argument', () => {

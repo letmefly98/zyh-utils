@@ -3,25 +3,9 @@ import {
   addDataToUrl,
   jsonToObject,
   objectToString,
-  stringToObject,
 } from '../src/data.mjs'
 
 describe('data.mjs', () => {
-  it('stringToObject', () => {
-    expect(stringToObject('')).toStrictEqual({})
-    expect(stringToObject('a=1')).toStrictEqual({ a: '1' })
-    expect(stringToObject('a=1&b=2')).toStrictEqual({ a: '1', b: '2' })
-    expect(stringToObject('a=&b=2')).toStrictEqual({ a: '', b: '2' })
-    expect(stringToObject('a=undefined&b=2')).toStrictEqual({ a: undefined, b: '2' })
-    expect(stringToObject('a=null&b=2')).toStrictEqual({ a: null, b: '2' })
-    expect(stringToObject('a=true&b=2')).toStrictEqual({ a: true, b: '2' })
-    expect(stringToObject('a=false&b=2')).toStrictEqual({ a: false, b: '2' })
-    expect(stringToObject('a:1;b:2', ';', ':')).toStrictEqual({ a: '1', b: '2' })
-    expect(stringToObject('a=1=1&b=2')).toStrictEqual({ a: '1=1', b: '2' })
-    expect(stringToObject('&b=2')).toStrictEqual({ b: '2' })
-    expect(stringToObject('=1&b=2')).toStrictEqual({ b: '2' })
-  })
-
   it('objectToString', () => {
     expect(objectToString()).toStrictEqual('')
     expect(objectToString({})).toStrictEqual('')
