@@ -10,11 +10,12 @@
  * @returns {string} 拼接后的字符串
  */
 export function stringJoin(separator = '/', ...strings) {
-  return strings.reduce((re, str, index) => {
-    if (!str || typeof str !== 'string') str = `${str}`
-    if (index === 0) return str
-    const sep = str.startsWith(separator) ? '' : separator
-    if (re.endsWith(separator)) re = re.slice(0, -1 * separator.length)
-    return re + sep + str
+  return strings.reduce((re, str, i) => {
+    str = String(str)
+    if (!i) return str
+    // 去掉连接处重复的分隔符
+    while (re.endsWith(separator)) re = re.slice(0, -separator.length)
+    while (str.startsWith(separator)) str = str.slice(separator.length)
+    return re + separator + str
   }, '')
 }
