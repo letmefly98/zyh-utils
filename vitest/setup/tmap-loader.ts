@@ -5,7 +5,7 @@
  * 在测试执行前加载腾讯地图 SDK
  */
 
-import { waitFor } from './utils'
+import { waitFor } from '@/others/waitFor/waitFor'
 
 const TMAP_CDN_URL = 'https://map.qq.com/api/gljs?v=1.exp&key=SD5BZ-RFZHU-C6ZVE-2H3GT-3I2DQ-2VFCG&libraries=tools,geometry'
 const LOAD_TIMEOUT = 3_000
